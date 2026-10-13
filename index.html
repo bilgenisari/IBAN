@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBAN Kopyala</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 350px;
+            width: 100%;
+        }
+        h2 { margin-bottom: 5px; color: #222; font-size: 20px; }
+        p { color: #666; font-size: 14px; margin-bottom: 20px; }
+        .iban-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 15px;
+            color: #0056b3;
+            margin-bottom: 20px;
+            word-break: break-all;
+            border: 1px solid #e1e4e8;
+        }
+        button {
+            background-color: #111;
+            color: white;
+            border: none;
+            padding: 15px 0;
+            width: 100%;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:active { background-color: #333; }
+        .toast {
+            margin-top: 15px;
+            color: #28a745;
+            font-size: 13px;
+            font-weight: 600;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>BİLGE NİSA ARI</h2>
+        <p>GARANTİ</p>
+        
+        <div class="iban-box" id="ibanText">TR76 0006 2001 2010 0006 8943 16</div>
+        
+        <button onclick="copyIban()">IBANI KOPYALA</button>
+        <div class="toast" id="toastMessage">IBAN başarıyla kopyalandı!</div>
+    </div>
+
+    <script>
+        function copyIban() {
+            const iban = document.getElementById("ibanText").innerText;
+            navigator.clipboard.writeText(iban).then(() => {
+                const toast = document.getElementById("toastMessage");
+                toast.style.display = "block";
+                setTimeout(() => {
+                    toast.style.display = "none";
+                }, 2000);
+            });
+        }
+    </script>
+
+</body>
+</html>
